@@ -1,42 +1,40 @@
-import react, {useState} from "react"
+import React, {useState} from 'react'
 
-const ItemCount = ({initial,stock}) =>{
-    const [count, setcount] = useState(1)
+const ItemCount = ({initial,stock}) => {
 
-    const less = () =>{
-        if (count > initial)
-        {
-            setcount (count - 1)
+    const [contador,setContador] = useState(1);
+
+    const decrementar = () => {
+        if(contador > initial){
+            setContador(contador - 1)
+        }
     }
-}
 
-const more = () =>{
-    if (count < stock)
-    {
-
-        setcount (count + 1)
+    const incrementar = () => {
+        if(contador < stock){
+            setContador(contador+1)
+        }
     }
-}
 
-
-const addtochart = () =>{
-   /* Aca una alerta con la biblioteca esa  */
-}
-
-
-
-
-    return (
-        <div>
-            <button onClick={less}>-</button>
-
-            <p>CANTIDAD</p>
-
-
-         <button onClick={more}>+</button>
-         <button onClick={addtochart}>Agregar al carrito</button>
-        </div>
-      );
+    const agregarCarrito = () => {
+        alert("Embarcaciones Añadidas Al Carrito")
     }
+
+  return (
+    <div>
+
+        
+
+        <button onClick={decrementar}>-</button>
+
+        {contador}
+
+        <button onClick={incrementar}>+</button>
+        <br />
+        <button onClick={agregarCarrito}>Agregar al carrito</button>
+
+    </div>
+  )
+}
 
 export default ItemCount;
