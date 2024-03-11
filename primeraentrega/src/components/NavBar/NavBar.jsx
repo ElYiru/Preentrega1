@@ -1,6 +1,6 @@
-
-import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import CartWidget from '../CartWidget/CartWidget';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,16 +52,9 @@ const NavBar = () => {
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   <Link to="/" className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Inicio</Link>
-                  {/* Aquí está la opción de categorías con el menú desplegable */}
-                  <div className="relative" onClick={toggleMenu}>
-                    <button className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium focus:outline-none">Categorías</button>
-                    <div className={`absolute right-0 mt-2 w-48 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg ${isOpen ? '' : 'hidden'}`}>
-                      <Link to="/categoria/Lanchas" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Lanchas</Link>
-                      <Link to="/categoria/Cruceros" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cruceros</Link>
-                      <Link to="/categoria/Veleros" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Veleros</Link>
-                    </div>
-                  </div>
-                  {/* Fin del menú desplegable */}
+                  <Link to="/categoria/Lanchas" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Lanchas</Link>
+                  <Link to="/categoria/Cruceros" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Cruceros</Link>
+                  <Link to="/categoria/Veleros" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Veleros</Link>
                   <Link to="/ofertas" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Ofertas</Link>
                   <Link to="/vende-tu-barco" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Vende Tu Barco</Link>
                 </div>
@@ -75,6 +68,8 @@ const NavBar = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                 </svg>
               </button>
+              {/* Usamos el componente CartWidget que incluye el Link al carrito */}
+              <CartWidget />
               <div className="relative ml-3">
                 <div>
                   <button type="button" className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">

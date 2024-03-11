@@ -2,29 +2,34 @@
 import { useState, useEffect } from 'react';
 import ItemList from '../ItemList/ItemList';
 import { useParams, Link } from 'react-router-dom';
-
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../../FireBase/Config';
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
   const { categoryId } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/productos.json");
-        const data = await response.json();
+    const fetchProductos = async () => {
+      
 
-        if (categoryId) {
-          const filteredProducts = data.filter((p) => p.categoria === categoryId);
-          setProductos(filteredProducts);
-        } else {
-          setProductos(data);
-        }
-      } catch (error) {
-        console.log("Error en el fetch " + error);
+      let misProductos;
+
+      if (categoryId) {
+        const q = query(collection(db, "item"), where("categoria", "==", categoryId));
+        misProductos = await getDocs(q);
+      } else {
+        misProductos = await getDocs(collection(db, "item"));
       }
+
+      const nuevosProductos = misProductos.docs.map((doc) => {
+        const data = doc.data();
+        return { id: doc.id, ...data };
+      });
+
+      setProductos(nuevosProductos);
     };
 
-    fetchData();
+    fetchProductos();
   }, [categoryId]);
 
   return (

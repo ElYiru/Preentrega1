@@ -1,7 +1,10 @@
-.carrito{
-    width: 50px;
-    height: 60px;
+.cart-widget-container {
+    display: flex;
+    align-items: center;
 }
-p{
-    text-align: left;
+
+.carrito {
+    width: 30px; 
+    height: auto; 
+    margin-right: 5px; 
 }
